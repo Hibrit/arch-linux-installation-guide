@@ -1,5 +1,5 @@
 // installing some necessary packages
-pacman -S grub grub-btrfs efibootmgr networkmanager network-manager-applet wireless_tools wpa_supplicant dialog os-prober mtools dosfstools base-devel linux-headers reflector openssh xdg-user-dirs
+pacman -S grub grub-btrfs efibootmgr networkmanager network-manager-applet wireless_tools wpa_supplicant dialog os-prober mtools dosfstools base-devel linux-headers reflector openssh xdg-user-dirs tldr
 
 // applying grub bootloader to system
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
