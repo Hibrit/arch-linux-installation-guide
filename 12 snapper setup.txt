@@ -1,0 +1,44 @@
+// unmount @snapshots/@ subvolume to delete /.snapshots folder it will created by snapper in the future
+umount /.snapshots
+
+// unmount @snapshots/@home subvolume to delete /home/.snapshots folder it will created by snapper in the future
+umount /home/.snapshots
+
+// remove /.snapshots
+rm -rf /.snapshots
+
+// remove /home/.snapshots
+rm -rf /home/.snapshots
+
+// create the snapper configuration for root "/"
+snapper -c root create-config /
+
+// create the snapper configuration for home "/home"
+snapper -c home create-config /home
+
+// configure the configuration itself (ALLOW_USERS="USERNAME" configure limits for the timeline cleanup as wished)
+vim /etc/snapper/configs/root
+
+// change permissions of /.snapshots directory
+chmod a+rx /.snapshots
+
+// change permissions of /home/.snapshots directory
+chmod a+rx /home/.snapshots
+
+// start the timeline timer
+systemctl start snapper-timeline.timer
+
+// enable the timeline timer to start at boot
+systemctl enable snapper-timeline.timer
+
+// enable the cleanup timer to start at boot
+systemctl enable snapper-cleanup.timer
+
+// start the cleanup timer
+systemctl start snapper-cleanup.timer
+
+// start the btrfs feature of grub
+systemctl start grub-btrfs.path
+
+// enable btrfs features at start
+systemctl enable grub-btrfs.path 
