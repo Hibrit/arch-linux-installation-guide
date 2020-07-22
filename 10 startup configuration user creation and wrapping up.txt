@@ -1,0 +1,20 @@
+// enabling network manager to have internet connection on boot up
+systemctl enable NetworkManager
+
+// create user named USERNAME with wheel group privilages we will configure wheel group's privilages later
+useradd -mG wheel USERNAME
+
+// give USERNAME user password
+passwd USERNAME
+
+// edit wheel group's privilages (you can even set it to use sudo without any password) uncomment %wheel ALL=(ALL) ALL line
+EDITOR=vim visudo
+
+// return to live installer
+exit
+
+// unmount all devices mounted on /mnt directory
+umount -R /mnt
+
+// reboot
+reboot

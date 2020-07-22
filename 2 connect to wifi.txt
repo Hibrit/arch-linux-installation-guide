@@ -1,0 +1,23 @@
+// start internet connection prompt
+iwctl
+
+// (in prompt) list all wireless devices to connect
+device list
+
+// (in prompt) scan the network using wireless device (let DEVICE be selected device
+station DEVICE scan
+
+// (in prompt) list all available networks to get desired networks SSID
+station DEVICE get-networks
+
+// (in prompt) connect to a network
+station DEVICE connect SSID
+
+// (in prompt) to exit prompt
+exit (or CTRL + d)
+
+// to check if you get an ip
+ip a
+
+// to check connection truely
+ping -c 3 archlinux.org

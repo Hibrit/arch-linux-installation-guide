@@ -1,0 +1,5 @@
+// set turkish keyboard layout
+loadkeys trq
+
+// verify the boot mode if things show up its efi if error raises its legacy
+ls /sys/firmware/efi/efivars

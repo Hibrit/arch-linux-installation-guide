@@ -1,0 +1,10 @@
+// generating fstab with UUID's and subvolid's
+genfstab -U /mnt >> /mnt/etc/fstab
+
+// checking the fstab !! important to check
+vim /mnt/etc/fstab
+
+// TODO : ADD HERE AN EXAMPLE LAYOUT
+
+// change your active root to newly installed one
+arch-chroot /mnt

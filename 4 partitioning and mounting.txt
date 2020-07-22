@@ -1,0 +1,77 @@
+// to see devices and partitions in them
+lsblk (-f for visualize details)
+
+// partitioning prompt (after selecting DEVICE)
+fdisk /dev/DEVICE
+
+// (in prompt) for creating a new gpt partition table (uefi)
+g
+
+// (in prompt) for creating new partition
+n
+(in last sector line +NG  --> creates N gb space of a partition)
+(in last sector line +NM  --> creates N mb space of a partition)
+
+// (in prompt) for changing type
+t
+1 (efi)
+19 (swap)
+20 (linux filesystem)
+
+// (in prompt) for writing changes to devices
+w
+
+// creating fat32 filesystem in selected PARTITION
+mkfs.fat -F32 /dev/PARTITION
+
+// labeling fat filesystem with LABEL
+fatlabel /dev/PARTITION LABEL
+
+// creating swap with LABEL in selected PARTITION
+mkswap /dev/PARTITION -L LABEL
+
+// activating swap partition 
+swapon /dev/PARTITION
+
+// creating btrfs filesystem with LABEL in selected PARTITION
+mkfs.btrfs /dev/PARTITION -L LABEL
+
+// mount PARTITION with btrfs to /mnt in order to create subvolumes
+mount /dev/PARTITION /mnt
+
+// create @ subvolume for root partition
+btrfs su cr /mnt/@
+
+// create @home subvolume for home partition
+btrfs su cr /mnt/@home
+
+// create @snapshots subvolume for snapshots
+btrfs su cr /mnt/@snapshots
+
+// create @snapshots/@ subvolume for root snapshots
+btrfs su cr /mnt/@snapshots/@
+
+// create @snapshots/@home subvolume for home snapshots
+btrfs su cr /mnt/@snapshots/@home
+
+// unmount btrfs PARTITION in order to mount it later properly
+umount /mnt
+
+// mount @ subvolume in btrfs PARTITON for root partition
+mount -o noatime,compress=lzo,space_cache,subvol=@ /dev/PARTITION /mnt
+
+// create first mount points in @ subvolume
+mkdir -p /mnt/{boot/efi,home,.snapshots}
+
+// mount efi boot PARTITION
+mount /dev/PARTITION /mnt/boot/efi
+
+// mount @home subvolume in btrfs PARTITION
+mount -o noatime,compress=lzo,space_cache,subvol=@home /dev/PARTITION /mnt/home
+
+// create snapshot mounting point in @home subvolume
+mkdir /mnt/home/.snapshots
+
+// mount @snapshot/* subvolumes in btrfs  PARTITION
+mount -o noatime,compress=lzo,space_cache,subvol=@snapshots/@ /dev/PARTITION /mnt/.snapshots
+mount -o noatime,compress=lzo,space_cache,subvol=@snapshots/@home /dev/PARTITION /mnt/home/.snapshots

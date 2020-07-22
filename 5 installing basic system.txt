@@ -1,0 +1,14 @@
+// updating mirrors
+pacman -Syy
+
+// if your speed is not what you have as an internet connection we should update our mirrors first install reflector
+pacman -S reflector
+
+// updating default mirrors with reflector
+reflector -c Turkey -a 12 --sort rate --save /etc/pacman.d/mirrorlist
+
+// re checking our mirrors
+pacman -Syy
+
+// installing basic system packages and some necessary things
+pacstrap /mnt base linux linux-firmware vim snapper
