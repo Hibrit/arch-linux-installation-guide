@@ -19,6 +19,9 @@ snapper -c home create-config /home
 // configure the configuration itself (ALLOW_USERS="USERNAME" configure limits for the timeline cleanup as wished)
 vim /etc/snapper/configs/root
 
+// configure the configuration itself (ALLOW_USERS="USERNAME" configure limits for the timeline cleanup as wished)
+vim /etc/snapper/configs/home
+
 // change permissions of /.snapshots directory
 chmod a+rx /.snapshots
 
@@ -41,4 +44,7 @@ systemctl start snapper-cleanup.timer
 systemctl start grub-btrfs.path
 
 // enable btrfs features at start
-systemctl enable grub-btrfs.path 
+systemctl enable grub-btrfs.path
+
+// reboot your system to changes take affect
+reboot
