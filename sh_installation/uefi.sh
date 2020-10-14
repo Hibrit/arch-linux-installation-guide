@@ -1,11 +1,11 @@
 #!/bin/bash
 
 #* update the system clock from internet
-timedatectl set-ntp true
+# timedatectl set-ntp true
 
 #todo partitioning and mounting (python)[or](shell scipting)
 #! testing partitioning in shell scripting
-./partitioning.sh
+# ./partitioning.sh
 
 
 #! reopen updating mirrors
@@ -21,13 +21,13 @@ timedatectl set-ntp true
 #pacman -Syy
 
 #* installing basic system packages and some necessary things
-sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | pacstrap /mnt base linux linux-firmware vim
-  1
-  Y
-EOF
+# sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | pacstrap /mnt base linux linux-firmware vim
+#   1
+#   Y
+# EOF
 
 #* generating fstab with UUID's and subvolid's
-genfstab -U /mnt >> /mnt/etc/fstab
+# genfstab -U /mnt >> /mnt/etc/fstab
 
 #! checking the fstab !! important to check
 echo
@@ -38,9 +38,9 @@ cat /mnt/etc/fstab
 printf "is fstab file correct? [y/n] >> "
 read -r fstabstatus
 
-if [ $fstabstatus == "n" ] then
+if [ "$fstabstatus" == "n" ] then
     vim /mnt/etc/fstab
-    elif [ $fstabstatus == "y" ] then
+    elif [ "$fstabstatus "== "y" ] then
         echo
 fi
 
