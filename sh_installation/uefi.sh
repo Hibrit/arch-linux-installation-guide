@@ -46,4 +46,4 @@ git clone https://github.com/Hibrit/arch-linux-installation-guide.git
 # cd arch-linux-installation-guide/sh_installation
 
 #! change your active root to newly installed one
-arch-chroot /mnt /bin/bash -c "su - -c /root/arch-linux-installation-guide/sh_installation/postChroot.sh"
+arch-chroot /mnt /bin/bash -c "su - -c ./postChroot.sh"
