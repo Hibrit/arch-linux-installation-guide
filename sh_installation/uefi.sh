@@ -38,9 +38,9 @@ cat /mnt/etc/fstab
 printf "is fstab file correct? [y/n] >> "
 read -r fstabstatus
 
-if [ "$fstabstatus" = "n" ] then
+if [[ "$fstabstatus" == "n" ]] then
     vim /mnt/etc/fstab
-    elif [ "$fstabstatus" = "y" ] then
+    elif [[ "$fstabstatus" == "y" ]] then
         echo
 fi
 
