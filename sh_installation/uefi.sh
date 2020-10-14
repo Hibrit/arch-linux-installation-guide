@@ -21,19 +21,22 @@ timedatectl set-ntp true
 #pacman -Syy
 
 #* installing basic system packages and some necessary things
-pacstrap --noconfirm /mnt base linux linux-firmware vim
+sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | pacstrap /mnt base linux linux-firmware vim
+  1
+  Y
+EOF
 
 #* generating fstab with UUID's and subvolid's
 genfstab -U /mnt >> /mnt/etc/fstab
 
 #! checking the fstab !! important to check
 cat /mnt/etc/fstab
-printf "is fstab file correct? [yes/no] >> "
+printf "is fstab file correct? [y/n] >> "
 read -r fstabstatus
 
-if [ $fstabstatus == 'no' ] then
+if [ $fstabstatus == 'n' ] then
     vim /mnt/etc/fstab
-    elif [ $fstabstatus == 'yes' ] then
+    elif [ $fstabstatus == 'y' ] then
         echo
 fi
 
