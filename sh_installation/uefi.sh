@@ -9,16 +9,16 @@ timedatectl set-ntp true
 
 
 #* updating mirrors
-pacman -Syy
+#pacman -Syy
 
 #* if your speed is not what you have as an internet connection we should update our mirrors first install reflector
-pacman -S --needed --noconfirm reflector
+#pacman -S --needed --noconfirm reflector
 
 #* updating default mirrors with reflector
-reflector -c Turkey -a 12 --sort rate --save /etc/pacman.d/mirrorlist
+#reflector -c Turkey -a 12 --sort rate --save /etc/pacman.d/mirrorlist
 
 #* re checking our mirrors
-pacman -Syy
+#pacman -Syy
 
 #* installing basic system packages and some necessary things
 #pacstrap --noconfirm /mnt base linux linux-firmware vim
