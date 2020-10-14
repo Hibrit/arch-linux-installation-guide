@@ -26,11 +26,15 @@ read -r fstabstatus
 
 [[ "$fstabstatus" == "n" ]] && vim /mnt/etc/fstab || echo
 
-#! wget post chroot newly installed systems root directory
+#* wget post chroot newly installed systems root directory
 mv postChroot.sh /mnt/root/
-# cd /mnt/root
-# wget https://github.com/Hibrit/arch-linux-installation-guide/raw/master/sh_installation/postChroot.sh
-# chmod a+x postChroot.sh
 
-#! change your active root to newly installed one
+#* change your active root to newly installed one
 arch-chroot /mnt /bin/bash -c "su - -c /root/postChroot.sh"
+
+#! unmount systemparts and reboot
+echo 'Please remember to remove your installation media after system is closed before restarted'
+sleep 5
+
+umount -R /mnt
+reboot
