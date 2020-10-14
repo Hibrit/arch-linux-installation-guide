@@ -34,3 +34,18 @@ sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk /dev/${device}
     # default
   w # write the partition table and quit
 EOF
+
+#! making filesystems
+mkfs.fat -f32 /dev/${device}1
+fatlabel /dev/${device}1 boot
+
+mkswap /dev/${device}2 -L swap
+swapon /dev/${device}2
+
+mkfs.ext4 /dev/${device}3 -L ARCH
+
+#! mounting
+mount /dev/${device}3 /mnt
+mkdir /mnt/boot
+
+mount /dev/${device}1 /mnt/boot

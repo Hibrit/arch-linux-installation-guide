@@ -7,6 +7,7 @@ timedatectl set-ntp true
 #! testing partitioning in shell scripting
 ./partitioning.sh
 
+
 #* updating mirrors
 #pacman -Syy
 
