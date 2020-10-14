@@ -1,5 +1,5 @@
 #!/bin/bash
-#! testing resetter
+#! testing resetter v2
 
 lsblk
 echo
