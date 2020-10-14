@@ -32,7 +32,7 @@ mv postChroot.sh /mnt/root/
 #* change your active root to newly installed one
 arch-chroot /mnt /bin/bash -c "su - -c /root/postChroot.sh"
 
-#! unmount systemparts and reboot
+#* unmount systemparts and reboot
 echo 'Please remember to remove your installation media after system is closed before restarted'
 sleep 5
 
