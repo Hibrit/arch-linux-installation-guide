@@ -36,8 +36,8 @@ arch-chroot /mnt /bin/bash -c "su - -c /root/postChroot.sh"
 rm /mnt/root/postChroot.sh
 
 #* unmount systemparts and reboot
-# echo 'Please remember to remove your installation media after system is closed before restarted'
-# sleep 5
+echo 'Please remember to remove your installation media after system is closed before restarted'
+sleep 5
 
-# umount -R /mnt
-# reboot
+umount -R /mnt
+reboot
