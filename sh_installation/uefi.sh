@@ -30,13 +30,17 @@ EOF
 genfstab -U /mnt >> /mnt/etc/fstab
 
 #! checking the fstab !! important to check
+echo
+lsblk
+echo
+lsblk -f
 cat /mnt/etc/fstab
 printf "is fstab file correct? [y/n] >> "
 read -r fstabstatus
 
-if [ $fstabstatus == 'n' ] then
+if [ $fstabstatus == "n" ] then
     vim /mnt/etc/fstab
-    elif [ $fstabstatus == 'y' ] then
+    elif [ $fstabstatus == "y" ] then
         echo
 fi
 
