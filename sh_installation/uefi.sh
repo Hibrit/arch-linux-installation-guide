@@ -1,12 +1,11 @@
 #!/bin/bash
 
-#! delete after test
-echo 'the system is uefi'
-
 #* update the system clock from internet
-#timedatectl set-ntp true
+timedatectl set-ntp true
 
 #todo partitioning and mounting (python)[or](shell scipting)
+#! testing partitioning in shell scripting
+./partitioning.sh
 
 #* updating mirrors
 #pacman -Syy
