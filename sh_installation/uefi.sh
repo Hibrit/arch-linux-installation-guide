@@ -43,7 +43,6 @@ read -r fstabstatus
 #! wget post chroot newly installed systems root directory
 cd /mnt/root
 wget https://github.com/Hibrit/arch-linux-installation-guide/raw/master/sh_installation/postChroot.sh
-cd arch-linux-installation-guide/sh_installation
 
 #! change your active root to newly installed one
-arch-chroot /mnt /bin/bash -c "su - -c /root/arch-linux-installation-guide/sh_installation/postChroot.sh"
+arch-chroot /mnt /bin/bash -c "su - -c /root/postChroot.sh"
