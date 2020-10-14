@@ -6,6 +6,10 @@ echo
 echo
 printf "please specify the device you will use (sdx) >> "
 read -r device
+echo
+free -h
+printf "please specify swap partition size (+xG|M) >> "
+read -r swapsize
 
 # to create the partitions programatically (rather than manually)
 # we're going to simulate the manual input to fdisk
@@ -24,7 +28,7 @@ sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk /dev/${device}
   n # new partition
   2 # partion number 2
     # default, start immediately after preceding partition
-  +9G # create a 9G partition for swap #todo change the value due to desired swap size
+  $swapsize # create a 9G partition for swap #! set the value due to desired swap size
   t # select type
   2 # select 2nd partition
   19 # set it to linux swap

@@ -7,5 +7,5 @@
 if [ -d "/sys/firmware/efi/efivars" ]; then
     ./uefi.sh
 else 
-    echo "system is not uefi developers will soon release an mbr version"
+    echo "current system is not uefi developers will soon release an mbr version"
 fi
