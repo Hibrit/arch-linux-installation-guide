@@ -15,23 +15,43 @@
 #* create locale.conf 
 # echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
-#! network configuration and passwd setting
-
 printf "what is your computers name >> "
 read -r compname
-
-printf "what is your root passwd >> "
-read -r rootpasswd
 
 #* setting computers NAME
 echo "$compname" > /etc/hostname
 
 #* setting domain resolvers with NAME in the hostname file
-echo "\n127.0.0.1\tlocalhost\n::1\t\tlocalhost\n127.0.1.1\t${compname}.localdomain\t${compname}" >> /etc/hosts
+printf "\n127.0.0.1\tlocalhost\n::1\t\tlocalhost\n127.0.1.1\t${compname}.localdomain\t${compname}" >> /etc/hosts
 
-#! set your root password
-# passwd
+#* set your root password
+echo "please enter your root password twice"
+passwd
 
-#! installing some packages
+#* installing some necessary packages
+pacman -S --needed --noconfirm grub efibootmgr networkmanager network-manager-applet wireless_tools wpa_supplicant dialog os-prober mtools dosfstools base-devel linux-headers reflector openssh xdg-user-dirs tldr
 
-#! startup configuration user creation
+#* insalling bootlader
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+
+#* creating grub bootloader config
+grub-mkconfig -o /boot/grub/grub.cfg
+
+#* enabling network manager to have internet connection on boot up
+systemctl enable NetworkManager
+
+#* create user named USERNAME with wheel group privilages we will configure wheel group's privilages later
+printf "what is your desired username >> "
+read -r username
+useradd -mG wheel $username
+
+#* give USERNAME user password
+echo "please enter the password for $username twice"
+passwd $username
+
+#! edit wheel group's privilages (you can even set it to use sudo without any password) uncomment %wheel ALL=(ALL) ALL line
+echo "root ALL=(ALL) ALL" > /etc/sudoers
+echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+#! return to live installer
+exit
