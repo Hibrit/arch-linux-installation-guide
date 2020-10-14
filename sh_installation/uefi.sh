@@ -8,26 +8,35 @@ timedatectl set-ntp true
 ./partitioning.sh
 
 
-#* updating mirrors
+#! reopen updating mirrors
 #pacman -Syy
 
-#* if your speed is not what you have as an internet connection we should update our mirrors first install reflector
+#! reopen if your speed is not what you have as an internet connection we should update our mirrors first install reflector
 #pacman -S --needed --noconfirm reflector
 
-#* updating default mirrors with reflector
+#! reopen updating default mirrors with reflector
 #reflector -c Turkey -a 12 --sort rate --save /etc/pacman.d/mirrorlist
 
-#* re checking our mirrors
+#! reopen re checking our mirrors
 #pacman -Syy
 
 #* installing basic system packages and some necessary things
-#pacstrap --noconfirm /mnt base linux linux-firmware vim
+pacstrap --noconfirm /mnt base linux linux-firmware vim
 
 #* generating fstab with UUID's and subvolid's
-#genfstab -U /mnt >> /mnt/etc/fstab
+genfstab -U /mnt >> /mnt/etc/fstab
 
 #! checking the fstab !! important to check
-#vim /mnt/etc/fstab
+cat /mnt/etc/fstab
+printf "is fstab file correct? [yes/no] >> "
+read -r fstabstatus
+
+if [ $fstabstatus == 'no' ] then
+    vim /mnt/etc/fstab
+    elif [ $fstabstatus == 'yes' ] then
+        echo
+fi
+
 
 #! change your active root to newly installed one
 #arch-chroot /mnt
