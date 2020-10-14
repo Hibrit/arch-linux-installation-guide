@@ -38,13 +38,8 @@ cat /mnt/etc/fstab
 printf "is fstab file correct? [y/n] >> "
 read -r fstabstatus
 
-echo $fstabstatus
+[[ "$fstabstatus" == "n" ]] && vim /mnt/etc/fstab || echo
 
-if [[ "$fstabstatus" == "n" ]] then
-    vim /mnt/etc/fstab
-    elif [[ "$fstabstatus" == "y" ]] then
-        echo
-fi
 
 
 #! change your active root to newly installed one
