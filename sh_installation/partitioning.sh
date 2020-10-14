@@ -24,7 +24,7 @@ sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk /dev/${device}
   n # new partition
   2 # partion number 2
     # default, start immediately after preceding partition
-  +9G # create a 9G partition for swap
+  +9G # create a 9G partition for swap #todo change the value due to desired swap size
   t # select type
   2 # select 2nd partition
   19 # set it to linux swap
@@ -36,7 +36,7 @@ sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk /dev/${device}
 EOF
 
 #! making filesystems
-mkfs.fat -f32 /dev/${device}1
+mkfs.fat -F32 /dev/${device}1
 fatlabel /dev/${device}1 boot
 
 mkswap /dev/${device}2 -L swap
