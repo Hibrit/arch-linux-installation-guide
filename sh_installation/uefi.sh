@@ -40,7 +40,7 @@ read -r fstabstatus
 
 if [ "$fstabstatus" == "n" ] then
     vim /mnt/etc/fstab
-    elif [ "$fstabstatus "== "y" ] then
+    elif [ "$fstabstatus" == "y" ] then
         echo
 fi
 
