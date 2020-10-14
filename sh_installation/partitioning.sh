@@ -4,8 +4,8 @@ echo
 lsblk -f
 echo
 echo
-echo "please specify the device you will use (sdx) >> "
-read device
+printf "please specify the device you will use (sdx) >> "
+read -r device
 
 # to create the partitions programatically (rather than manually)
 # we're going to simulate the manual input to fdisk
