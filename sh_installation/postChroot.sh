@@ -58,6 +58,7 @@ su $username
 xdg-user-dirs-update
 wget https://github.com/Hibrit/setupscripts/raw/master/postInstall.sh
 chmod a+x postInstall.sh
+exit
 
 #* return to live installer
 exit
