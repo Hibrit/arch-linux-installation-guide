@@ -7,7 +7,7 @@ timedatectl set-ntp true
 ./partitioning.sh
 
 #* installing basic system packages and some necessary things
-sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | pacstrap /mnt base linux linux-firmware vim git
+sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | pacstrap /mnt base linux linux-firmware vim git wget
   1
   Y
 EOF

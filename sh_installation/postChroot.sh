@@ -29,7 +29,7 @@ echo "please enter your root password twice"
 passwd
 
 #* installing some necessary packages
-pacman -S --needed --noconfirm grub efibootmgr networkmanager network-manager-applet wireless_tools wpa_supplicant dialog os-prober mtools dosfstools base-devel linux-headers reflector openssh xdg-user-dirs tldr git wget
+pacman -S --needed --noconfirm grub efibootmgr networkmanager network-manager-applet wireless_tools wpa_supplicant dialog os-prober mtools dosfstools base-devel linux-headers reflector openssh xdg-user-dirs tldr
 
 #* insalling bootlader
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
