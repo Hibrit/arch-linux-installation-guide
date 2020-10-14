@@ -29,26 +29,16 @@
 #* generating fstab with UUID's and subvolid's
 # genfstab -U /mnt >> /mnt/etc/fstab
 
-#! checking the fstab !! important to check
-echo
-lsblk
-echo
-lsblk -f
-cat /mnt/etc/fstab
-printf "is fstab file correct? [y/n] >> "
-read -r fstabstatus
+#* checking the fstab !! important to check
+# echo
+# lsblk
+# echo
+# lsblk -f
+# cat /mnt/etc/fstab
+# printf "is fstab file correct? [y/n] >> "
+# read -r fstabstatus
 
-[[ "$fstabstatus" == "n" ]] && vim /mnt/etc/fstab || echo
-
-
+# [[ "$fstabstatus" == "n" ]] && vim /mnt/etc/fstab || echo
 
 #! change your active root to newly installed one
-#arch-chroot /mnt
-
-#! clock and locales
-
-#! network configuration and passwd setting
-
-#! installing some packages
-
-#! startup configuration user creation
+arch-chroot /mnt ./postChroot.sh
