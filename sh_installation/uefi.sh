@@ -26,7 +26,7 @@ read -r fstabstatus
 
 [[ "$fstabstatus" == "n" ]] && vim /mnt/etc/fstab || echo
 
-#* wget post chroot newly installed systems root directory
+#* mv post chroot newly installed systems root directory
 mv postChroot.sh /mnt/root/
 
 #* change your active root to newly installed one

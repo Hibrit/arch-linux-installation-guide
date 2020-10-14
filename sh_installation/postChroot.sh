@@ -54,12 +54,8 @@ echo "root ALL=(ALL) ALL" > /etc/sudoers
 echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 #! switch user to $username create user-dirs wget postInstall.sh
-su $username
-xdg-user-dirs-update
-cd ~
-wget https://github.com/Hibrit/setupscripts/raw/master/postInstall.sh
-chmod a+x postInstall.sh
-exit
+su $user -c "xdg-user-dirs-update && cd ~ && wget https://github.com/Hibrit/setupscripts/raw/master/postInstall.sh && chmod a+x postInstall.sh && exit"
+
 
 #* return to live installer
 exit
