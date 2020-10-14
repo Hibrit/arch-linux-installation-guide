@@ -7,7 +7,7 @@ ln -sf /usr/share/zoneinfo/Europe/Istanbul /etc/localtime
 hwclock --systohc
 
 #* selecting locales to generate later uncomment the line with correct locale (preferrably en_US.UTF-8)
-vim /etc/locale.gen
+echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 
 #* generate locales
 locale-gen

@@ -21,7 +21,7 @@
 #pacman -Syy
 
 #* installing basic system packages and some necessary things
-# sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | pacstrap /mnt base linux linux-firmware vim
+# sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | pacstrap /mnt base linux linux-firmware vim git
 #   1
 #   Y
 # EOF
@@ -39,6 +39,11 @@
 # read -r fstabstatus
 
 # [[ "$fstabstatus" == "n" ]] && vim /mnt/etc/fstab || echo
+
+#! clone git repo to newly installed systems root directory
+# cd /mnt/root
+# git clone https://github.com/Hibrit/arch-linux-installation-guide.git
+# cd arch-linux-installation-guide/sh_installation
 
 #! change your active root to newly installed one
 arch-chroot /mnt ./postChroot.sh
