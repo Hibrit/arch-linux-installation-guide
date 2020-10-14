@@ -41,9 +41,9 @@
 # [[ "$fstabstatus" == "n" ]] && vim /mnt/etc/fstab || echo
 
 #! clone git repo to newly installed systems root directory
-# cd /mnt/root
-# git clone https://github.com/Hibrit/arch-linux-installation-guide.git
+cd /mnt/root
+git clone https://github.com/Hibrit/arch-linux-installation-guide.git
 # cd arch-linux-installation-guide/sh_installation
 
 #! change your active root to newly installed one
-arch-chroot /mnt ./postChroot.sh
+arch-chroot /mnt /root/arch-linux-installation-guide/sh_installation/postChroot.sh
