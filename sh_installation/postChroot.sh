@@ -1,3 +1,4 @@
+#!/bin/bash
 #! clock and locales
 
 #* selecting time zone
